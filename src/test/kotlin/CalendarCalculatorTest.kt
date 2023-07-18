@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class CalendarCalculatorTest {
@@ -39,6 +40,16 @@ class CalendarCalculatorTest {
       "HK",
       hkHolidays
     )
+  }
+
+  @Test
+  fun checkDateTest() {
+//    assertTrue { calendarCalculator.checkDate("20230630") }
+  }
+
+  @Test
+  fun checkInvalidDateTest() {
+//    assertFalse { calendarCalculator.checkDate("202320062") }
   }
 
   private fun init(): CalendarCalculator {
