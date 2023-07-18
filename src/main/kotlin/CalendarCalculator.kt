@@ -1,41 +1,23 @@
 class CalendarCalculator {
 
-  var holidayMap = HashMap<String, List<String>>()
+  var holidayData = HashMap<String, List<String>>()
+  var fileMap = mapOf(
+    "SG" to "/data/SG.txt",
+    "HK" to "/data/HK.txt"
+  )
 
   fun loadHolidayCalendar() {
-    holidayMap["SG"] = listOf(
-      "20230102",
-      "20230201",
-      "20230202",
-      "20230407",
-      "20230422",
-      "20230501",
-      "20230602",
-      "20230629",
-      "20230809",
-      "20231112",
-      "20231225"
-    )
+    loadDataFromFiles()
+  }
 
-    holidayMap["HK"] = listOf(
-      "20230102",
-      "20230123",
-      "20230124",
-      "20230125",
-      "20230405",
-      "20230407",
-      "20230408",
-      "20230410",
-      "20230501",
-      "20230526",
-      "20230622",
-      "20230701",
-      "20230930",
-      "20231002",
-      "20231023",
-      "20231225",
-      "20231226"
-    )
+  private fun loadDataFromFiles() {
+    fileMap.forEach { (key, value) ->
+      val fileContent = readResourceFileAsLines(value)
+      assert(fileContent != null)
+      holidayData[key] = fileContent!!.splitToList("\n")
+    }
   }
 
 }
+
+
