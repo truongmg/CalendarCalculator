@@ -26,5 +26,5 @@ tasks.withType<KotlinCompile> {
 }
 
 application {
-    mainClass.set("CalendarCalculatorKt")
+    mainClass.set("com.truong.calendar.MainKt")
 }
