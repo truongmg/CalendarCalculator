@@ -1,4 +1,4 @@
-package com.truong.calendar
+package com.truong.calendar.service
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -6,7 +6,7 @@ import kotlin.test.assertTrue
 
 class CalendarCalculatorTest {
 
-  private lateinit var calendarCalculator: CalendarCalculator
+  private lateinit var calendarCalculator: CalendarCalculatorOld
   private lateinit var holidayMap: HashMap<String, List<String>>
 
   @BeforeEach
@@ -53,8 +53,8 @@ class CalendarCalculatorTest {
 //    assertFalse { calendarCalculator.checkDate("202320062") }
   }
 
-  private fun init(): CalendarCalculator {
-    val calendarCalculator = CalendarCalculator().apply { loadHolidayCalendar() }
+  private fun init(): CalendarCalculatorOld {
+    val calendarCalculator = CalendarCalculatorOld().apply { loadHolidayCalendar() }
     assertTrue("Holiday Map should be loaded") { calendarCalculator.holidayData.isNotEmpty() }
     return calendarCalculator
   }

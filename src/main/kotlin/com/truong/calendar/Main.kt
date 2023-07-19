@@ -1,10 +1,17 @@
 package com.truong.calendar
 
+import com.truong.calendar.data.FileDataProvider
+import com.truong.calendar.factory.CalendarFactory
+import com.truong.calendar.service.CalendarCalculator
 import java.lang.NumberFormatException
 import kotlin.system.exitProcess
 
+const val CHECK_A_DATE = 1
+const val CALCULATE_NEXT_BIZ_DAY = 2
+
 fun main(args: Array<String>) {
-  val holidayOption = userSelectAction {
+  // Select country
+  val countryOption = userSelectAction {
     println(
       """
         Welcome to GIC Calendar Calculator
@@ -15,14 +22,15 @@ fun main(args: Array<String>) {
     )
   }
 
-  // factory to create concrete calendar class
-  val calendarCalculator = CalendarCalculator().apply {
+  // use factory to create concrete calendar class
+  val calendarCalculator = CalendarFactory.createCalendarCalculator(
+    countryOption, FileDataProvider()
+  ).apply {
     loadHolidayCalendar()
-    setHolidayCalendar(holidayOption)
   }
-
   println()
 
+  // select action
   val action = userSelectAction {
     println(
       """
@@ -34,9 +42,9 @@ fun main(args: Array<String>) {
   }
   println()
 
-  if (action == 1) {
+  if (action == CHECK_A_DATE) {
     checkDateAction(calendarCalculator)
-  } else {
+  } else if (action == CALCULATE_NEXT_BIZ_DAY) {
     calculateNextBizDay(calendarCalculator)
   }
 }
