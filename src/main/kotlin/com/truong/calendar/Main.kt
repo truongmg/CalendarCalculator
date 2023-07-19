@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
 
   // use factory to create concrete calendar class
   val calendarCalculator = CalendarFactory.createCalendarCalculator(
-    countryOption, FileDataProvider()
+    countryOption
   ).apply {
     loadHolidayCalendar()
   }

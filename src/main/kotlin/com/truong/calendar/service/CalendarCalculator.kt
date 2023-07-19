@@ -9,7 +9,9 @@ abstract class CalendarCalculator(var dataProvider: DataProvider) {
   // holiday data for a selected country
   lateinit var publicHolidays: List<String>
 
-  abstract fun loadHolidayCalendar()
+  fun loadHolidayCalendar() {
+    publicHolidays = dataProvider.loadData()
+  }
 
   fun checkDate(date: String?) {
     if (!isValidDate(date)) {

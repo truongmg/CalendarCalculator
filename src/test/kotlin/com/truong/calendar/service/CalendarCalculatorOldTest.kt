@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertTrue
 
-class CalendarCalculatorTest {
+class CalendarCalculatorOldTest {
 
   private lateinit var calendarCalculator: CalendarCalculatorOld
   private lateinit var holidayMap: HashMap<String, List<String>>
