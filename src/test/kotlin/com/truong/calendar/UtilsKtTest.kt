@@ -3,15 +3,23 @@ package com.truong.calendar
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import java.time.format.DateTimeParseException
 
 internal class UtilsKtTest {
 
   @Test
-  fun readResourceFileAsLines() {
+  fun testReadResourceFileAsLines() {
+    val path = "/data/test.txt"
+    val content = readResourceFileAsLines(path)
+    assertNotNull(content, "should be able to retrieve the content")
+    assertEquals(content, "Sample test", "content should be the same")
   }
 
   @Test
-  fun toList() {
+  fun testReadResourceFileAsLines_fileNotExist() {
+    val path = "/data/notfound.txt"
+    val content = readResourceFileAsLines(path)
+    assertNull(content, "content should be null as file not exist")
   }
 
   @Test
@@ -45,14 +53,31 @@ internal class UtilsKtTest {
   }
 
   @Test
-  fun parseDateString() {
+  fun testParseDateString() {
+    val localDate = parseDateString("20210102")
+    assertTrue(localDate.monthValue == 1, "a valid date should be able to parsed")
+    assertTrue(localDate.year == 2021, "a valid date should be able to parsed")
   }
 
   @Test
-  fun isWorkingDay() {
+  fun testParseDateString_dateWithOtherFormat() {
+    assertThrows(DateTimeParseException::class.java) {
+      parseDateString("2021-01-02")
+    }
+  }
+
+  @Test
+  fun isWorkingDay_falseForSaturday() {
+    assertFalse(isWorkingDay("20230603"), "20230603 is a weekend")
+  }
+
+  @Test
+  fun isWorkingDay_falseForSunday() {
+    assertFalse(isWorkingDay("20230604"), "20230604 is a weekend")
   }
 
   @Test
   fun testIsWorkingDay() {
+    assertTrue(isWorkingDay("20230605"), "20230605 is a working day")
   }
 }
