@@ -1,0 +1,20 @@
+@startuml
+User -> CalendarApplication: Use calendar application
+CalendarApplication --> User: Prompt greeting and ask for select a country
+User -> CalendarApplication: Input 1 (SG country)
+
+CalendarApplication -> CalendarFactory: Create CalendarCalculator for specific country
+CalendarFactory -> SGCalendarCalculator: Create new instance
+SGCalendarCalculator -> DataProvider: Trigger load data
+CalendarFactory --> CalendarApplication: New instance of CalendarCalculator
+
+CalendarApplication -> User: Ask user to check a date and calculate next biz day
+User --> CalendarApplication: Input 1 (Check a date)
+
+CalendarApplication -> User: Ask user to check in a date
+User --> CalendarApplication: Input 20231112
+
+CalendarApplication -> SGCalendarCalculator: check the given date
+SGCalendarCalculator -> CalendarApplication: response answer
+CalendarApplication -> User: display answer
+@enduml
