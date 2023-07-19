@@ -45,7 +45,7 @@ abstract class CalendarCalculator(var dataProvider: DataProvider) {
     return nextDay
   }
 
-  fun isPublicHoliday(date: String): Boolean {
+  private fun isPublicHoliday(date: String): Boolean {
     val formattedDate = date.replace("-", "")
     return publicHolidays.contains(formattedDate)
   }
