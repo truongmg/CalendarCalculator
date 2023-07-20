@@ -40,3 +40,6 @@ fun isWorkingDay(localDate: LocalDate): Boolean {
   val dayOfWeek = localDate.dayOfWeek
   return dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY
 }
+
+fun LocalDate.asIsoDate(): String
+    = this.format(DateTimeFormatter.BASIC_ISO_DATE)

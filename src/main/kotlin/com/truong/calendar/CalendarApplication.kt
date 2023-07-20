@@ -3,6 +3,7 @@ package com.truong.calendar
 import com.truong.calendar.factory.CalendarFactory
 import com.truong.calendar.service.CalendarCalculator
 import java.lang.NumberFormatException
+import java.time.format.DateTimeFormatter
 import kotlin.system.exitProcess
 
 class CalendarApplication {
@@ -64,7 +65,7 @@ class CalendarApplication {
       if (date == "#") exitProcess(1)
 
       val nextBusinessDay = calendarCalculator.nextBusinessDay(date)
-      println("The next business day is $nextBusinessDay")
+      println("The next business day is ${nextBusinessDay?.asIsoDate()}")
       println("Please enter a date in yyyyMMdd format or please enter # to end")
     } while (true)
   }

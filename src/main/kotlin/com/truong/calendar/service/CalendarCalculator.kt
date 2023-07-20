@@ -3,6 +3,7 @@ package com.truong.calendar.service
 import com.truong.calendar.*
 import com.truong.calendar.data.DataProvider
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 abstract class CalendarCalculator(var dataProvider: DataProvider) {
 
@@ -38,7 +39,7 @@ abstract class CalendarCalculator(var dataProvider: DataProvider) {
     val localDate = parseDateString(date)
     var nextDay = localDate.plusDays(1)
 
-    while (!isWorkingDay(nextDay) || isPublicHoliday(nextDay.toString()) ) {
+    while (!isWorkingDay(nextDay) || isPublicHoliday(nextDay.asIsoDate()) ) {
       nextDay = nextDay.plusDays(1)
     }
 
@@ -46,9 +47,9 @@ abstract class CalendarCalculator(var dataProvider: DataProvider) {
   }
 
   private fun isPublicHoliday(date: String): Boolean {
-    val formattedDate = date.replace("-", "")
-    return publicHolidays.contains(formattedDate)
+    return publicHolidays.contains(date)
   }
 
 }
+
 
